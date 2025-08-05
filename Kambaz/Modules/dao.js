@@ -6,6 +6,11 @@ export function findModulesForCourse(courseId) {
   return modules.filter((module) => module.course === courseId);
 }
 
+export function findModuleById(moduleId) {
+  const { modules } = Database;
+  return modules.find((module) => module._id === moduleId);
+}
+
 export function createModule(module) {
   const newModule = { ...module, _id: uuidv4() };
   Database.modules = [...Database.modules, newModule];
