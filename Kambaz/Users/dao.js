@@ -1,4 +1,3 @@
-// Kambaz/Users/dao.js
 import db from "../Database/index.js";
 import { v4 as uuidv4 } from "uuid";
 

@@ -1,4 +1,3 @@
-// ✅ Kanbas/Assignments/dao.js
 import Database from "../Database/index.js";
 
 export function findAssignmentsForCourse(courseId) {

@@ -1,6 +1,6 @@
 import * as dao from "./dao.js";
-import * as courseDao from "../Courses/dao.js";  // 新增：导入课程 DAO
-import * as enrollmentsDao from "../Enrollments/dao.js";  // 新增：导入注册 DAO
+import * as courseDao from "../Courses/dao.js";
+import * as enrollmentsDao from "../Enrollments/dao.js";
 
 export default function UserRoutes(app) {
   const createUser = (req, res) => {
@@ -72,7 +72,6 @@ export default function UserRoutes(app) {
     res.json(currentUser);
   };
 
-  // 🆕 新增：获取用户注册的课程
   const findCoursesForEnrolledUser = (req, res) => {
     let { userId } = req.params;
     if (userId === "current") {
@@ -87,7 +86,6 @@ export default function UserRoutes(app) {
     res.json(courses);
   };
 
-  // 🆕 新增：创建新课程
   const createCourse = (req, res) => {
     const currentUser = req.session["currentUser"];
     if (!currentUser) {
@@ -99,7 +97,6 @@ export default function UserRoutes(app) {
     res.json(newCourse);
   };
 
-  // 原有的用户路由
   app.post("/api/users", createUser);
   app.get("/api/users", findAllUsers);
   app.get("/api/users/:userId", findUserById);
@@ -110,7 +107,6 @@ export default function UserRoutes(app) {
   app.post("/api/users/signout", signout);
   app.post("/api/users/profile", profile);
 
-  // 🆕 新增：课程相关路由
   app.get("/api/users/:userId/courses", findCoursesForEnrolledUser);
   app.post("/api/users/current/courses", createCourse);
 }
